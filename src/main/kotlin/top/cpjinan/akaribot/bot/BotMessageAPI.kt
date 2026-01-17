@@ -43,4 +43,33 @@ object BotMessageAPI {
                 ).build()
         ).execute()
     }
+
+    /**
+     * 发送群聊文本消息。
+     *
+     * @param groupId 群号。
+     * @param message 要发送的内容。
+     */
+    @JvmStatic
+    fun sendGroupMsg(groupId: Long, message: String) {
+        OkHttpClient().newCall(
+            Request.Builder()
+                .url("http://127.0.0.1:3000/send_group_msg")
+                .post(
+                    """
+                        {
+                            "group_id": $groupId,
+                            "message": [
+                                {
+                                    "type": "text",
+                                    "data": {
+                                        "text": "$message"
+                                    }
+                                }
+                            ]
+                        }
+                    """.trimIndent().toRequestBody("application/json".toMediaType())
+                ).build()
+        ).execute()
+    }
 }

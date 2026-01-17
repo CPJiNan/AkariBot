@@ -16,16 +16,18 @@ function onBotPostEvent() {
         .setExecutor(
             function (event) {
                 var json = JSON.parse(event.getJson());
-                var sender = json.user_id;
-                var message = json.raw_message;
 
+                var groupId = json.group_id;
+                if (groupId === undefined) return;
+
+                var message = json.raw_message;
                 if (message === ".list") {
                     var players = Bukkit.getOnlinePlayers();
                     var playerNames = [];
                     for (var i = 0; i < players.size(); i++) {
                         playerNames.push(players.get(i).getName());
                     }
-                    BotMessageAPI.sendPrivateMsg(sender, "服务器当前有" + players.size() + "个玩家在线:\\n"
+                    BotMessageAPI.sendGroupMsg(groupId, "服务器当前有" + players.size() + "个玩家在线:\\n"
                         + playerNames.join(", "));
                 }
             }
