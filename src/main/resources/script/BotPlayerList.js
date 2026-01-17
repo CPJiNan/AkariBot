@@ -16,7 +16,7 @@ function onBotPostEvent() {
         .setExecutor(
             function (event) {
                 var json = JSON.parse(event.getJson());
-                var sender = json.sender.user_id;
+                var sender = json.user_id;
                 var message = json.raw_message;
 
                 if (message === ".list") {
@@ -25,7 +25,7 @@ function onBotPostEvent() {
                     for (var i = 0; i < players.size(); i++) {
                         playerNames.push(players.get(i).getName());
                     }
-                    BotMessageAPI.sendPrivateMsg(sender, "服务器当前有" + players.size() + "个玩家在线:\n"
+                    BotMessageAPI.sendPrivateMsg(sender, "服务器当前有" + players.size() + "个玩家在线:\\n"
                         + playerNames.join(", "));
                 }
             }

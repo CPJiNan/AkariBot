@@ -22,7 +22,7 @@ object BotMessageAPI {
      * @param message 要发送的内容。
      */
     @JvmStatic
-    fun sendPrivateMsg(userId: Int, message: String) {
+    fun sendPrivateMsg(userId: Long, message: String) {
         OkHttpClient().newCall(
             Request.Builder()
                 .url("http://127.0.0.1:3000/send_private_msg")
