@@ -35,6 +35,8 @@ class ScriptHandlerImpl : ScriptHandler() {
             
             var AkariBot = PluginManager.getPlugin("AkariBot");
             
+            var BotMessageAPI = Packages.top.cpjinan.akaribot.bot.BotMessageAPI;
+            
             var Command = Packages.top.cpjinan.akaribot.script.ScriptCommand;
             var Listener = Packages.top.cpjinan.akaribot.script.ScriptListener;
             var Task = Packages.top.cpjinan.akaribot.script.ScriptTask;
