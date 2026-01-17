@@ -28,6 +28,8 @@ class BotHttpHandler : HttpHandler {
                             JsonObject::class.java
                         )
                     ).call()
+                    exchange.sendResponseHeaders(200, -1)
+                    exchange.responseBody.close()
                 }
 
                 else -> exchange.sendResponseHeaders(405, -1)
