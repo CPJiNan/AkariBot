@@ -3,6 +3,8 @@ package top.cpjinan.akaribot.bot
 import com.sun.net.httpserver.HttpServer
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 import java.net.InetSocketAddress
 
 /**
@@ -22,6 +24,7 @@ object BotHttpServer {
                 createContext("/", BotHttpHandler())
                 start()
             }
+            console().sendLang("BotHttpServerEnabled")
         } catch (e: Exception) {
             e.printStackTrace()
         }
