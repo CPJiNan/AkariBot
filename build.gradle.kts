@@ -17,6 +17,7 @@ taboolib {
             CommandHelper,
             JavaScript,
             Bukkit,
+            BukkitUI,
             BukkitHook,
             BukkitUtil
         )
