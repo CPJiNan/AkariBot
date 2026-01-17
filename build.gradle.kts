@@ -14,12 +14,9 @@ taboolib {
         install(
             Basic,
             Metrics,
-            Database,
             CommandHelper,
-            Kether,
             JavaScript,
             Bukkit,
-            BukkitUI,
             BukkitHook,
             BukkitUtil
         )
