@@ -15,6 +15,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
  * @since 2026/1/17 21:48
  */
 object BotMessageAPI {
+    private val client = OkHttpClient()
+
     /**
      * 发送私聊文本消息。
      *
@@ -23,7 +25,7 @@ object BotMessageAPI {
      */
     @JvmStatic
     fun sendPrivateMsg(userId: Long, message: String) {
-        OkHttpClient().newCall(
+        client.newCall(
             Request.Builder()
                 .url("http://127.0.0.1:3000/send_private_msg")
                 .post(
@@ -41,7 +43,9 @@ object BotMessageAPI {
                         }
                     """.trimIndent().toRequestBody("application/json".toMediaType())
                 ).build()
-        ).execute()
+        ).execute().use { response ->
+            response.body.close()
+        }
     }
 
     /**
@@ -52,7 +56,7 @@ object BotMessageAPI {
      */
     @JvmStatic
     fun sendGroupMsg(groupId: Long, message: String) {
-        OkHttpClient().newCall(
+        client.newCall(
             Request.Builder()
                 .url("http://127.0.0.1:3000/send_group_msg")
                 .post(
@@ -70,6 +74,8 @@ object BotMessageAPI {
                         }
                     """.trimIndent().toRequestBody("application/json".toMediaType())
                 ).build()
-        ).execute()
+        ).execute().use { response ->
+            response.body.close()
+        }
     }
 }
