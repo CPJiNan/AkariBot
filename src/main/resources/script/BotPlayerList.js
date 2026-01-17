@@ -27,7 +27,7 @@ function onBotPostEvent() {
                     for (var i = 0; i < players.size(); i++) {
                         playerNames.push(players.get(i).getName());
                     }
-                    BotMessageAPI.sendGroupMsg(groupId, "服务器当前有" + players.size() + "个玩家在线:\\n"
+                    BotMessageAPI.sendGroupMsg(groupId, "服务器当前有 " + players.size() + " 个玩家在线:\\n"
                         + playerNames.join(", "));
                 }
             }
