@@ -21,9 +21,9 @@ function onBotPostEvent() {
 
                 if (message === ".list") {
                     var players = Bukkit.getOnlinePlayers();
-                    var playerNames = new java.util.ArrayList();
+                    var playerNames = [];
                     for (var i = 0; i < players.size(); i++) {
-                        playerNames.add(players.get(i).getName());
+                        playerNames.push(players.get(i).getName());
                     }
                     BotMessageAPI.sendPrivateMsg(sender, "服务器当前有" + players.size() + "个玩家在线:"
                         + playerNames.join(", "));

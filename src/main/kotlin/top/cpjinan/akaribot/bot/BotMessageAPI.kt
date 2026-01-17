@@ -28,10 +28,17 @@ object BotMessageAPI {
                 .url("http://127.0.0.1:3000/send_private_msg")
                 .post(
                     """
-                    {
-                        "user_id": $userId,
-                        "message": [{"type": "text", "data": {"text": "$message"}}]
-                    }
+                        {
+                            "user_id": $userId,
+                            "message": [
+                                {
+                                    "type": "text",
+                                    "data": {
+                                        "text": "$message"
+                                    }
+                                }
+                            ]
+                        }
                     """.trimIndent().toRequestBody("application/json".toMediaType())
                 ).build()
         ).execute()
