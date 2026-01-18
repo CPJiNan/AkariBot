@@ -29,7 +29,7 @@ function onBotPostEvent() {
                     if (players.length !== 0) {
                         BotMessageAPI.sendGroupMsg(groupId, "服务器当前有 " + players.length + " 个玩家在线:\\n" + playerNames.join(", "));
                     } else {
-                        BotMessageAPI.sendGroupMsg(groupId, "服务器当前有 0 个玩家在线.");
+                        BotMessageAPI.sendGroupMsg(groupId, "服务器当前有 0 个玩家在线");
                     }
                 }
             }
