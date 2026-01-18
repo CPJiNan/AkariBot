@@ -1,6 +1,5 @@
 package top.cpjinan.akaribot.event
 
-import com.google.gson.JsonObject
 import taboolib.platform.type.BukkitProxyEvent
 
 /**
@@ -13,5 +12,5 @@ import taboolib.platform.type.BukkitProxyEvent
  * @since 2026/1/17 20:10
  */
 class BotPostEvent(
-    val json: JsonObject
+    val json: String
 ) : BukkitProxyEvent()

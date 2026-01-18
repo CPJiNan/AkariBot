@@ -5,6 +5,7 @@ import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 import taboolib.common.platform.function.console
 import taboolib.module.lang.sendLang
+import top.cpjinan.akaribot.config.BotConfig
 import java.net.InetSocketAddress
 
 /**
@@ -20,12 +21,13 @@ object BotHttpServer {
     @Awake(LifeCycle.ENABLE)
     fun onEnable() {
         try {
-            HttpServer.create(InetSocketAddress(8080), 0).apply {
+            HttpServer.create(InetSocketAddress(BotConfig.post), 0).apply {
                 createContext("/", BotHttpHandler())
                 start()
             }
-            console().sendLang("BotHttpServerEnabled")
+            console().sendLang("BotPostServerStarted", "http://127.0.0.1:${BotConfig.post}/")
         } catch (e: Exception) {
+            console().sendLang("BotPostServerStartFailed", "http://127.0.0.1:${BotConfig.post}/")
             e.printStackTrace()
         }
     }

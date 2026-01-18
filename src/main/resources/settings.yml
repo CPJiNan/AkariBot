@@ -12,3 +12,10 @@ Options:
   Send-Metrics: true
   # 启用调试模式
   Debug: false
+
+# Bot 设置
+Bot:
+  # HTTP API 服务器地址
+  API: "http://127.0.0.1:3000/"
+  # HTTP 上报服务器端口
+  Post: 8080
