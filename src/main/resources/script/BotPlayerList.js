@@ -16,12 +16,11 @@ function onBotPostEvent() {
         .setExecutor(
             function (event) {
                 var json = JSON.parse(event.getJson());
-
-                var groupId = json.group_id;
-                if (groupId === undefined) return;
+                if (json.post_type !== "message" || json.message_type !== "group") return;
 
                 var message = json.raw_message;
                 if (message === ".list") {
+                    var groupId = json.group_id;
                     var players = Bukkit.getOnlinePlayers();
                     var playerNames = [];
                     for (var i = 0; i < players.size(); i++) {
