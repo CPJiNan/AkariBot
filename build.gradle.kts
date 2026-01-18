@@ -14,6 +14,7 @@ taboolib {
         install(
             Basic,
             Metrics,
+            Database,
             CommandHelper,
             JavaScript,
             Bukkit,
