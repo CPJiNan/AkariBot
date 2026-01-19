@@ -41,12 +41,12 @@ class ScriptHandlerImpl : ScriptHandler() {
             var Listener = Packages.top.cpjinan.akaribot.script.ScriptListener;
             var Task = Packages.top.cpjinan.akaribot.script.ScriptTask;
             var Placeholder = Packages.top.cpjinan.akaribot.script.ScriptPlaceholder;
-            
-            var PlayerJoinEvent = Packages.org.bukkit.event.player.PlayerJoinEvent;
-            var PlayerQuitEvent = Packages.org.bukkit.event.player.PlayerQuitEvent;
+            var Database = Packages.top.cpjinan.akaribot.database.Database;
             
             var BotPostEvent = Packages.top.cpjinan.akaribot.event.BotPostEvent;
             var PluginReloadEvent = Packages.top.cpjinan.akaribot.event.PluginReloadEvent;
+            
+            var HttpUtils = Packages.top.cpjinan.akaribot.utils.HttpUtils;
             """.trimIndent()
             )
         }
