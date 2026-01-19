@@ -29,6 +29,7 @@ taboolib {
         }
     }
     version { taboolib = "6.2.4-65252583" }
+    relocate("okhttp3", "top.cpjinan.akaribot.okhttp3")
 }
 
 repositories {
@@ -46,7 +47,7 @@ dependencies {
     // nashorn
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
     // OkHttp
-    compileOnly("com.squareup.okhttp3:okhttp:5.3.2")
+    taboo("com.squareup.okhttp3:okhttp-jvm:5.3.2")
 }
 
 java {
