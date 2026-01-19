@@ -1,9 +1,18 @@
+@file:RuntimeDependencies(
+    RuntimeDependency(
+        "!com.squareup.okhttp3:okhttp:5.3.2",
+        test = "!okhttp3.OkHttpClient"
+    )
+)
+
 package top.cpjinan.akaribot.utils
 
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import taboolib.common.env.RuntimeDependencies
+import taboolib.common.env.RuntimeDependency
 
 /**
  * AkariBot

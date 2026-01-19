@@ -46,7 +46,7 @@ dependencies {
     // nashorn
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
     // OkHttp
-    taboo("com.squareup.okhttp3:okhttp:5.3.2")
+    compileOnly("com.squareup.okhttp3:okhttp:5.3.2")
 }
 
 java {
