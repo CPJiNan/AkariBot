@@ -39,6 +39,24 @@ interface Database {
     val tables: Map<String, Table<*, *>>
 
     /**
+     * 创建数据表。
+     *
+     * @param name 数据表的名称。
+     * @return 请求的数据表。
+     */
+    fun createTable(name: String): Table<*, *>
+
+    /**
+     * 获取或创建数据表。
+     *
+     * 如果数据表不存在，则会创建一个新的。
+     *
+     * @param name 数据表的名称。
+     * @return 请求的数据表。
+     */
+    fun getOrCreateTable(name: String): Table<*, *>
+
+    /**
      * 检查此数据库中是否包含给定路径。
      *
      * 如果请求路径的值不存在但已指定默认值，则此方法将返回 true。

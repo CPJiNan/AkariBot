@@ -1,5 +1,7 @@
 package top.cpjinan.akaribot.database
 
+import taboolib.module.database.ColumnOptionSQL
+import taboolib.module.database.ColumnTypeSQL
 import taboolib.module.database.Table
 import top.cpjinan.akaribot.config.DatabaseConfig
 
@@ -19,6 +21,27 @@ class DatabaseMySQL() : Database {
     override val dataSource by lazy { DatabaseConfig.hostSQL.createDataSource() }
 
     override val tables = hashMapOf<String, Table<*, *>>()
+
+    override fun createTable(name: String): Table<*, *> {
+        val table = tables.computeIfAbsent(name) {
+            Table(name, DatabaseConfig.hostSQL) {
+                add("key") {
+                    type(ColumnTypeSQL.VARCHAR, 64) {
+                        options(ColumnOptionSQL.PRIMARY_KEY)
+                    }
+                }
+                add("value") {
+                    type(ColumnTypeSQL.TEXT)
+                }
+            }
+        }
+        table.createTable(dataSource)
+        return table
+    }
+
+    override fun getOrCreateTable(name: String): Table<*, *> {
+        return tables.getOrPut(name) { createTable(name) }
+    }
 
     override fun contains(table: Table<*, *>, path: String): Boolean {
         return table.select(dataSource) {
