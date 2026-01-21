@@ -23,7 +23,7 @@ object BotMessageAPI {
     @JvmStatic
     fun sendPrivateMsg(userId: Long, message: String): String {
         return HttpUtils.sendPostRequest(
-            "${BotConfig.api}send_private_msg",
+            "${BotConfig.httpUrl}/send_private_msg",
             """
                     {
                         "user_id": $userId,
@@ -50,7 +50,7 @@ object BotMessageAPI {
     @JvmStatic
     fun sendGroupMsg(groupId: Long, message: String): String {
         return HttpUtils.sendPostRequest(
-            "${BotConfig.api}send_group_msg",
+            "${BotConfig.httpUrl}/send_group_msg",
             """
                     {
                         "group_id": $groupId,

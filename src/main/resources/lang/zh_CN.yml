@@ -3,5 +3,5 @@ PluginEnabled: "&8[&3Akari&bBot&8] &b信息 &8| &6插件加载完毕。"
 PluginDisabled: "&8[&3Akari&bBot&8] &b信息 &8| &6插件卸载完毕。"
 PluginReloaded: "&8[&3Akari&bBot&8] &b信息 &8| &6插件重载完毕。"
 
-BotPostServerStarted: "&8[&3Akari&bBot&8] &fHTTP 上报服务器已启动: {0}。"
-BotPostServerStartFailed: "&8[&3Akari&bBot&8] &fHTTP 上报服务器启动失败: {0}。"
+BotWebHookServerStarted: "&8[&3Akari&bBot&8] &fWebHook 服务器已启动: {0}。"
+BotWebHookServerStartFailed: "&8[&3Akari&bBot&8] &fWebHook 服务器启动失败: {0}。"

@@ -30,7 +30,10 @@ Database:
 
 # Bot 设置
 Bot:
-  # HTTP API 服务器地址
-  API: "http://127.0.0.1:3000/"
-  # HTTP 上报服务器端口
-  Post: 8080
+  # HTTP 设置
+  HTTP:
+    url: http://127.0.0.1:3000
+  # WebHook 设置
+  WebHook:
+    enable: true
+    port: 5700
