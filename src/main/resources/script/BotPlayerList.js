@@ -19,7 +19,7 @@ function onBotPostEvent() {
                 if (json.post_type !== "message" || json.message_type !== "group") return;
 
                 var message = json.raw_message;
-                if (message === ".list") {
+                if (message === ".玩家列表") {
                     var groupId = json.group_id;
                     var players = Bukkit.getOnlinePlayers();
                     var playerNames = [];

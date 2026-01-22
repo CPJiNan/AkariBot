@@ -6,7 +6,7 @@ import taboolib.platform.type.BukkitProxyEvent
  * AkariBot
  * top.cpjinan.akaribot.event
  *
- * 机器人上报事件。
+ * Bot 上报事件。
  *
  * @author 季楠
  * @since 2026/1/17 20:10
