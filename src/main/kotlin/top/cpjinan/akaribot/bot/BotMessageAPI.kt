@@ -907,4 +907,339 @@ object BotMessageAPI {
                     """.trimIndent()
         )
     }
+
+    /**
+     * 转发单条好友消息。
+     *
+     * @param messageId 消息 ID。
+     * @param userId 对方 QQ 号。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun forwardFriendSingleMsg(messageId: Long, userId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/forward_friend_single_msg",
+            """
+                    {
+                        "message_id": $messageId,
+                        "user_id": $userId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 转发单条群消息。
+     *
+     * @param messageId 消息 ID。
+     * @param groupId 群号。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun forwardGroupSingleMsg(messageId: Long, groupId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/forward_group_single_msg",
+            """
+                    {
+                        "message_id": $messageId,
+                        "group_id": $groupId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取消息详情。
+     *
+     * @param messageId 消息 ID。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getMsg(messageId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_msg",
+            """
+                    {
+                        "message_id": $messageId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 撤回消息。
+     *
+     * @param messageId 消息 ID。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun deleteMsg(messageId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/delete_msg",
+            """
+                    {
+                        "message_id": $messageId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取消息文件详情。
+     *
+     * @param file 收到的文件名。
+     * @param download 是否下载文件到 QQ 目录。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getFile(file: String, download: Boolean = true): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_file",
+            """
+                    {
+                        "file": "$file",
+                        "download": $download
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取消息图片详情。
+     *
+     * @param file 收到的图片文件名。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getImage(file: String): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_image",
+            """
+                    {
+                        "file": "$file"
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取消息语音详情。
+     *
+     * @param file 收到的语音文件名。
+     * @param outFormat 要转换到的格式（mp3、amr、wma、m4a、spx、ogg、wav、flac）。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getRecord(file: String, outFormat: String = "mp3"): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_record",
+            """
+                    {
+                        "file": "$file",
+                        "out_format": "$outFormat"
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 表情回应消息。
+     *
+     * @param messageId 消息 ID。
+     * @param emojiId 表情 ID。
+     *
+     * 表情 ID 参考：
+     * https://bot.q.qq.com/wiki/develop/api-v2/openapi/emoji/model.html#EmojiType
+     *
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun setMsgEmojiLike(messageId: Long, emojiId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/set_msg_emoji_like",
+            """
+                    {
+                        "message_id": $messageId,
+                        "emoji_id": $emojiId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 取消消息表情回应。
+     *
+     * @param messageId 消息 ID。
+     * @param emojiId 表情 ID。
+     *
+     * 表情 ID 参考：
+     * https://bot.q.qq.com/wiki/develop/api-v2/openapi/emoji/model.html#EmojiType
+     *
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun unsetMsgEmojiLike(messageId: Long, emojiId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/unset_msg_emoji_like",
+            """
+                    {
+                        "message_id": $messageId,
+                        "emoji_id": $emojiId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取好友历史消息记录。
+     *
+     * @param userId QQ 号。
+     * @param messageSeq 起始消息序号，填 0 表示从最新开始。
+     * @param count 消息数量。
+     * @param reverseOrder 是否逆序。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getFriendMsgHistory(
+        userId: Long,
+        messageSeq: Long = 0,
+        count: Long = 20,
+        reverseOrder: Boolean = false
+    ): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_friend_msg_history",
+            """
+                    {
+                        "user_id": $userId,
+                        "message_seq": $messageSeq,
+                        "count": $count,
+                        "reverseOrder": $reverseOrder
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取群历史消息。
+     *
+     * @param groupId 群号。
+     * @param messageSeq 起始消息序号，填 0 表示从最新开始。
+     * @param count 消息数量。
+     * @param reverseOrder 是否逆序。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getGroupMsgHistory(
+        groupId: Long,
+        messageSeq: Long = 0,
+        count: Long = 20,
+        reverseOrder: Boolean = false
+    ): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_group_msg_history",
+            """
+                    {
+                        "group_id": $groupId,
+                        "message_seq": $messageSeq,
+                        "count": $count,
+                        "reverseOrder": $reverseOrder
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取转发消息详情。
+     *
+     * @param messageId 消息 ID。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getForwardMsg(messageId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_forward_msg",
+            """
+                    {
+                        "message_id": $messageId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 标记消息已读。
+     *
+     * @param messageId 消息 ID。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun markMsgAsRead(messageId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/mark_msg_as_read",
+            """
+                    {
+                        "message_id": $messageId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 语音消息转文字。
+     *
+     * @param messageId 消息 ID。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun voiceMsgToText(messageId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/voice_msg_to_text",
+            """
+                    {
+                        "message_id": $messageId
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 发送群 AI 语音。
+     *
+     * @param character 语音声色。
+     * @param groupId 群号。
+     * @param text 语音文本。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun sendGroupAiRecord(character: String, groupId: Long, text: String): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/send_group_ai_record",
+            """
+                    {
+                        "character": "$character",
+                        "group_id": $groupId,
+                        "text": "$text"
+                    }
+                    """.trimIndent()
+        )
+    }
+
+    /**
+     * 获取群 Ai 语音可用声色列表。
+     *
+     * @param groupId 群号。
+     * @return 响应体字符串。
+     */
+    @JvmStatic
+    fun getAiCharacters(groupId: Long): String {
+        return HttpUtils.sendPostRequest(
+            "${BotConfig.httpUrl}/get_ai_characters",
+            """
+                    {
+                        "group_id": $groupId,
+                        "chat_type": 1
+                    }
+                    """.trimIndent()
+        )
+    }
 }
