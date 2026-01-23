@@ -1225,7 +1225,7 @@ object BotMessageAPI {
     }
 
     /**
-     * 获取群 Ai 语音可用声色列表。
+     * 获取群 AI 语音可用声色列表。
      *
      * @param groupId 群号。
      * @return 响应体字符串。
