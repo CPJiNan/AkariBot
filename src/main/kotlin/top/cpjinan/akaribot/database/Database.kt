@@ -41,7 +41,7 @@ interface Database {
     /**
      * 创建数据表。
      *
-     * @param name 数据表的名称。
+     * @param name 数据表名称。
      * @return 请求的数据表。
      */
     fun createTable(name: String): Table<*, *>
@@ -51,41 +51,41 @@ interface Database {
      *
      * 如果数据表不存在，则会创建一个新的。
      *
-     * @param name 数据表的名称。
+     * @param name 数据表名称。
      * @return 请求的数据表。
      */
     fun getOrCreateTable(name: String): Table<*, *>
 
     /**
-     * 检查此数据库中是否包含给定路径。
+     * 检查此数据表中是否包含给定路径。
      *
      * 如果请求路径的值不存在但已指定默认值，则此方法将返回 true。
      *
-     * @param table 要操作的数据表。
+     * @param table 要操作的数据表名称。
      * @param path 要检查存在性的路径。
-     * @return 如果此数据库包含请求的路径（通过默认值或已设置），则返回 true。
+     * @return 如果此数据表包含请求的路径（通过默认值或已设置），则返回 true。
      */
-    fun contains(table: Table<*, *>, path: String): Boolean
+    fun contains(table: String, path: String): Boolean
 
     /**
      * 通过路径获取请求的对象。
      *
      * 如果对象不存在，则返回 null。
      *
-     * @param table 要操作的数据表。
+     * @param table 要操作的数据表名称。
      * @param path 要获取的对象的路径。
      * @return 请求的对象。
      */
-    fun get(table: Table<*, *>, path: String): String?
+    fun get(table: String, path: String): String?
 
     /**
      * 将指定路径设置为给定值。
      *
      * 如果值为 null，则会删除该条目。任何现有条目都将被替换，无论新值是什么。
      *
-     * @param table 要操作的数据表。
+     * @param table 要操作的数据表名称。
      * @param path 要设置的对象的路径。
      * @param value 要设置的新值。
      */
-    fun set(table: Table<*, *>, path: String, value: String?)
+    fun set(table: String, path: String, value: String?)
 }

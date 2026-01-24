@@ -42,16 +42,16 @@ class DatabaseSQLite() : Database {
         return tables.getOrPut(name) { createTable(name) }
     }
 
-    override fun contains(table: Table<*, *>, path: String): Boolean {
-        return table.select(dataSource) {
+    override fun contains(table: String, path: String): Boolean {
+        return getOrCreateTable(table).select(dataSource) {
             rows("key")
             where("key" eq path)
             limit(1)
         }.find()
     }
 
-    override fun get(table: Table<*, *>, path: String): String? {
-        return table.select(dataSource) {
+    override fun get(table: String, path: String): String? {
+        return getOrCreateTable(table).select(dataSource) {
             rows("key", "value")
             where("key" eq path)
             limit(1)
@@ -60,18 +60,18 @@ class DatabaseSQLite() : Database {
         }
     }
 
-    override fun set(table: Table<*, *>, path: String, value: String?) {
+    override fun set(table: String, path: String, value: String?) {
         if (value == null) {
-            table.delete(dataSource) {
+            getOrCreateTable(table).delete(dataSource) {
                 where { "key" eq path }
             }
             return
         }
-        if (contains(table, path)) table.update(dataSource) {
+        if (contains(table, path)) getOrCreateTable(table).update(dataSource) {
             set("value", value)
             where("key" eq path)
         } else {
-            table.insert(dataSource, "key", "value") {
+            getOrCreateTable(table).insert(dataSource, "key", "value") {
                 value(path, value)
             }
         }
