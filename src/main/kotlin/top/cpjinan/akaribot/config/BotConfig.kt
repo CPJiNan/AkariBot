@@ -16,20 +16,20 @@ object BotConfig {
      * HTTP 服务器地址。
      */
     val httpUrl: String by lazy {
-        settings.getString("Bot.HTTP.url", "http://127.0.0.1:3000")!!
+        settings.getString("Bot.HTTP.URL", "http://127.0.0.1:3000")!!
     }
 
     /**
      * WebHook 是否启用。
      */
     val webHookEnable: Boolean by lazy {
-        settings.getBoolean("Bot.WebHook.enable", true)
+        settings.getBoolean("Bot.WebHook.Enable", true)
     }
 
     /**
      * WebHook 端口。
      */
     val webHookPort: Int by lazy {
-        settings.getInt("Bot.WebHook.port", 5700)
+        settings.getInt("Bot.WebHook.Port", 5700)
     }
 }

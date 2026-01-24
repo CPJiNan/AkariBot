@@ -22,11 +22,11 @@ object DatabaseConfig {
     }
 
     val hostSQL: HostSQL by lazy {
-        settings.getHost("Database.MYSQL")
+        settings.getHost("Database.MySQL")
     }
 
     val file: String by lazy {
-        settings.getString("Database.SQLITE.file") ?: "sqlite.db"
+        settings.getString("Database.SQLite.file") ?: "sqlite.db"
     }
 
     val hostSQLite: HostSQLite by lazy {

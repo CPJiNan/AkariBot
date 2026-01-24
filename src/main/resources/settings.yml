@@ -13,27 +13,27 @@ Options:
   # 启用调试模式
   Debug: false
 
+# Bot 设置
+Bot:
+  # HTTP 设置
+  HTTP:
+    URL: http://127.0.0.1:3000
+  # WebHook 设置
+  WebHook:
+    Enable: true
+    Port: 5700
+
 # 数据库设置
 Database:
   # 存储方式 (MYSQL, SQLITE)
   Type: SQLITE
   # MySQL 存储设置
-  MYSQL:
+  MySQL:
     host: localhost
     port: 3306
     user: root
     password: password
     database: minecraft
   # SQLite 存储设置
-  SQLITE:
+  SQLite:
     file: sqlite.db
-
-# Bot 设置
-Bot:
-  # HTTP 设置
-  HTTP:
-    url: http://127.0.0.1:3000
-  # WebHook 设置
-  WebHook:
-    enable: true
-    port: 5700
