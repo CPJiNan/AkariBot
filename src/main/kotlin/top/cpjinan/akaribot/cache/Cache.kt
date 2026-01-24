@@ -78,4 +78,15 @@ object Cache {
         else getOrCreateCache(table).put(path, value)
         Database.instance.set(table, path, value)
     }
+
+    /**
+     * 使缓存中的指定路径无效。
+     *
+     * @param table 要操作的数据表名称。
+     * @param path 要使无效的对象的路径。
+     */
+    @JvmStatic
+    fun invalidate(table: String, path: String) {
+        getOrCreateCache(table).invalidate(path)
+    }
 }
