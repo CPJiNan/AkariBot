@@ -12,7 +12,7 @@ function onPluginEnable() {
     onAsyncPlayerChat();
 }
 
-var enable = false
+var enable = false;
 var groups = [];
 
 function onBotPost() {
@@ -38,9 +38,8 @@ function onAsyncPlayerChat() {
     new Listener(org.bukkit.event.player.AsyncPlayerChatEvent.class)
         .setExecutor(
             function (event) {
-                var message = "[服务器] " + event.getPlayer().getName() + ": " + event.getMessage();
                 for (var i = 0; i < groups.length; i++) {
-                    BotMessageAPI.sendGroupTextMsg(groups[i], message);
+                    BotMessageAPI.sendGroupTextMsg(groups[i], "[服务器] " + event.getPlayer().getName() + ": " + event.getMessage());
                 }
             }
         ).register();
