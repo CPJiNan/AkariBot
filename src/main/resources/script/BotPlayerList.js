@@ -8,10 +8,10 @@
  */
 
 function onPluginEnable() {
-    onBotPostEvent();
+    onBotPost();
 }
 
-function onBotPostEvent() {
+function onBotPost() {
     new Listener(BotPostEvent.class)
         .setExecutor(
             function (event) {

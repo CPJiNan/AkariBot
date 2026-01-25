@@ -11,10 +11,10 @@ var users = [];
 var groups = [704109949, 983034842];
 
 function onPluginEnable() {
-    onBotPostEvent();
+    onBotPost();
 }
 
-function onBotPostEvent() {
+function onBotPost() {
     new Listener(BotPostEvent.class)
         .setExecutor(
             function (event) {
