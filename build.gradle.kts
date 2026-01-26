@@ -31,7 +31,6 @@ taboolib {
     }
     version { taboolib = "6.2.4-1645904" }
     relocate("okhttp3", "top.cpjinan.akaribot.okhttp3")
-    relocate("com.github.benmanes.caffeine", "top.cpjinan.akaribot.caffeine")
 }
 
 repositories {
@@ -50,8 +49,6 @@ dependencies {
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
     // OkHttp
     taboo("com.squareup.okhttp3:okhttp-jvm:5.3.2")
-    // caffeine
-    taboo("com.github.ben-manes.caffeine:caffeine:2.9.3")
 }
 
 java {

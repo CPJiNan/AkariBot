@@ -6,7 +6,7 @@ import top.cpjinan.akaribot.config.CacheConfig
  * AkariBot
  * top.cpjinan.akaribot.cache
  *
- * 数据缓存类型枚举。
+ * 缓存类型枚举。
  *
  * @author 季楠
  * @since 2026/1/18 23:07

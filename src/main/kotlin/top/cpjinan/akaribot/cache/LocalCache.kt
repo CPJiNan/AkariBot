@@ -1,62 +1,51 @@
 package top.cpjinan.akaribot.cache
 
-import com.github.benmanes.caffeine.cache.Caffeine
-import com.github.benmanes.caffeine.cache.LoadingCache
-import top.cpjinan.akaribot.database.Database
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * AkariBot
  * top.cpjinan.akaribot.cache
  *
- * 本地数据缓存。
+ * 本地缓存。
  *
  * @author 季楠
  * @since 2025/8/12 04:43
  */
 class LocalCache : Cache {
     /**
-     * 数据表缓存。
+     * 缓存表。
      */
-    val caches = hashMapOf<String, LoadingCache<String, String>>()
+    val caches = hashMapOf<String, MutableMap<String, String>>()
 
     /**
-     * 创建数据表缓存。
+     * 创建缓存表。
      *
-     * @param table 数据表名称。
-     * @return 请求的数据表缓存。
+     * @param name 缓存表名称。
+     * @return 请求的缓存表。
      */
-    fun createCache(table: String): LoadingCache<String, String> {
-        val cache = caches.computeIfAbsent(table) {
-            Caffeine.newBuilder()
-                .build { key ->
-                    Database.instance.get(table, key) ?: ""
-                }
-        }
+    fun createCache(name: String): MutableMap<String, String> {
+        val cache = caches.computeIfAbsent(name) { ConcurrentHashMap() }
         return cache
     }
 
     /**
-     * 获取或创建数据表缓存。
+     * 获取或创建缓存表。
      *
-     * 如果数据表缓存不存在，则会创建一个新的。
+     * 如果缓存表不存在，则会创建一个新的。
      *
-     * @param table 数据表名称。
-     * @return 请求的数据表缓存。
+     * @param name 缓存表名称。
+     * @return 请求的缓存表。
      */
-    fun getOrCreateCache(table: String): LoadingCache<String, String> {
-        return caches.getOrPut(table) { createCache(table) }
+    fun getOrCreateCache(name: String): MutableMap<String, String> {
+        return caches.getOrPut(name) { createCache(name) }
     }
 
-    override fun get(table: String, path: String): String? {
-        return getOrCreateCache(table).get(path)
+    override fun get(cache: String, path: String): String? {
+        return getOrCreateCache(cache).get(path)
     }
 
-    override fun set(table: String, path: String, value: String?) {
-        if (value == null) getOrCreateCache(table).invalidate(path)
-        else getOrCreateCache(table).put(path, value)
-    }
-
-    override fun invalidate(table: String, path: String) {
-        getOrCreateCache(table).invalidate(path)
+    override fun set(cache: String, path: String, value: String?) {
+        if (value == null) getOrCreateCache(cache).remove(path)
+        else getOrCreateCache(cache)[path] = value
     }
 }
