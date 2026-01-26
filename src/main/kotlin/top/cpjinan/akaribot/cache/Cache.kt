@@ -1,52 +1,22 @@
 package top.cpjinan.akaribot.cache
 
-import com.github.benmanes.caffeine.cache.Caffeine
-import com.github.benmanes.caffeine.cache.LoadingCache
-import top.cpjinan.akaribot.database.Database
-
 /**
  * AkariBot
  * top.cpjinan.akaribot.cache
  *
- * 数据缓存。
+ * 数据缓存接口。
  *
  * @author 季楠
- * @since 2025/8/12 04:43
+ * @since 2026/1/26 22:02
  */
-object Cache {
-    /**
-     * 数据表缓存。
-     */
-    val caches = hashMapOf<String, LoadingCache<String, String>>()
-
-    /**
-     * 创建数据表缓存。
-     *
-     * @param table 数据表名称。
-     * @return 请求的数据表缓存。
-     */
-    @JvmStatic
-    fun createCache(table: String): LoadingCache<String, String> {
-        val cache = caches.computeIfAbsent(table) {
-            Caffeine.newBuilder()
-                .build { key ->
-                    Database.instance.get(table, key) ?: ""
-                }
+interface Cache {
+    companion object {
+        @JvmStatic
+        val instance by lazy {
+            when (CacheType.instance) {
+                CacheType.LOCAL -> LocalCache()
+            }
         }
-        return cache
-    }
-
-    /**
-     * 获取或创建数据表缓存。
-     *
-     * 如果数据表缓存不存在，则会创建一个新的。
-     *
-     * @param table 数据表名称。
-     * @return 请求的数据表缓存。
-     */
-    @JvmStatic
-    fun getOrCreateCache(table: String): LoadingCache<String, String> {
-        return caches.getOrPut(table) { createCache(table) }
     }
 
     /**
@@ -58,10 +28,7 @@ object Cache {
      * @param path 要获取的对象的路径。
      * @return 请求的对象。
      */
-    @JvmStatic
-    fun get(table: String, path: String): String? {
-        return getOrCreateCache(table).get(path)
-    }
+    fun get(table: String, path: String): String?
 
     /**
      * 将指定路径设置为给定值。
@@ -72,12 +39,7 @@ object Cache {
      * @param path 要设置的对象的路径。
      * @param value 要设置的新值。
      */
-    @JvmStatic
-    fun set(table: String, path: String, value: String?) {
-        if (value == null) getOrCreateCache(table).invalidate(path)
-        else getOrCreateCache(table).put(path, value)
-        Database.instance.set(table, path, value)
-    }
+    fun set(table: String, path: String, value: String?)
 
     /**
      * 使缓存中的指定路径无效。
@@ -85,8 +47,5 @@ object Cache {
      * @param table 要操作的数据表名称。
      * @param path 要使无效的对象的路径。
      */
-    @JvmStatic
-    fun invalidate(table: String, path: String) {
-        getOrCreateCache(table).invalidate(path)
-    }
+    fun invalidate(table: String, path: String)
 }
