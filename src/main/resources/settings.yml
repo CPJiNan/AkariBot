@@ -40,5 +40,35 @@ Database:
 
 # 数据缓存设置
 Cache:
-  # 缓存方式 (LOCAL)
+  # 缓存方式 (LOCAL, REDIS)
   Type: LOCAL
+  # Redis 缓存设置
+  Redis:
+    # 基础连接配置
+    host: localhost
+    port: 6379
+    password: password
+    ssl: false
+    timeout: PT15S           # 超时时间 (Duration 格式)
+    database: 0              # 数据库编号 0-15
+    # 线程池配置
+    ioThreadPoolSize: 0              # 0 表示自动识别
+    computationThreadPoolSize: 0     # 0 表示自动识别
+    # 连接选项
+    autoReconnect: true                      # 自动重连
+    pingBeforeActivateConnection: true       # 激活前 PING 测试
+    # 连接池配置
+    pool:
+      lifo: true                # 后进先出
+      fairness: false           # 公平锁
+      maxTotal: 8               # 最大连接数
+      maxIdle: 8                # 最大空闲连接
+      minIdle: 0                # 最小空闲连接
+      testOnBorrow: false       # 借出时测试
+      maxWaitDuration: PT15S    # 最大等待时间
+      blockWhenExhausted: true  # 耗尽时阻塞
+    # 异步连接池配置
+    asyncPool:
+      maxTotal: 8
+      maxIdle: 8
+      minIdle: 0

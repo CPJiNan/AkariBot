@@ -15,6 +15,7 @@ taboolib {
             Basic,
             Metrics,
             Database,
+            LettuceRedis,
             CommandHelper,
             JavaScript,
             Bukkit,

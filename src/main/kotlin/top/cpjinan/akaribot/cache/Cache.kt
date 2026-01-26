@@ -15,6 +15,7 @@ interface Cache {
         val instance by lazy {
             when (CacheType.instance) {
                 CacheType.LOCAL -> LocalCache()
+                CacheType.REDIS -> RedisCache()
             }
         }
     }

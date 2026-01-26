@@ -12,7 +12,8 @@ import top.cpjinan.akaribot.config.CacheConfig
  * @since 2026/1/18 23:07
  */
 enum class CacheType {
-    LOCAL;
+    LOCAL,
+    REDIS;
 
     companion object {
         @JvmStatic

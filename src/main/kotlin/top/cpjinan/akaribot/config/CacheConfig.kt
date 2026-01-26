@@ -1,5 +1,6 @@
 package top.cpjinan.akaribot.config
 
+import taboolib.expansion.LettuceRedisConfig
 import top.cpjinan.akaribot.config.SettingsConfig.settings
 
 /**
@@ -14,5 +15,9 @@ import top.cpjinan.akaribot.config.SettingsConfig.settings
 object CacheConfig {
     val type: String by lazy {
         settings.getString("Cache.Type") ?: "LOCAL"
+    }
+
+    val lettuceRedisConfig: LettuceRedisConfig by lazy {
+        LettuceRedisConfig(settings.getConfigurationSection("Cache.Redis")!!)
     }
 }
