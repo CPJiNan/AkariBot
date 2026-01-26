@@ -54,7 +54,6 @@ class LocalCache : Cache {
     override fun set(table: String, path: String, value: String?) {
         if (value == null) getOrCreateCache(table).invalidate(path)
         else getOrCreateCache(table).put(path, value)
-        Database.instance.set(table, path, value)
     }
 
     override fun invalidate(table: String, path: String) {
