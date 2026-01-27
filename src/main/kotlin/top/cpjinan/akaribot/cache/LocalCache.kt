@@ -40,6 +40,12 @@ class LocalCache : Cache {
         return caches.getOrPut(name) { createCache(name) }
     }
 
+    override val type = CacheType.LOCAL
+
+    override fun contains(cache: String, path: String): Boolean {
+        return path in getOrCreateCache(cache)
+    }
+
     override fun get(cache: String, path: String): String? {
         return getOrCreateCache(cache).get(path)
     }

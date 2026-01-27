@@ -21,6 +21,22 @@ interface Cache {
     }
 
     /**
+     * 缓存类型。
+     */
+    val type: CacheType
+
+    /**
+     * 检查此缓存表中是否包含给定路径。
+     *
+     * 如果请求路径的值不存在但已指定默认值，则此方法将返回 true。
+     *
+     * @param cache 要操作的缓存表名称。
+     * @param path 要检查存在性的路径。
+     * @return 如果此缓存表包含请求的路径，则返回 true。
+     */
+    fun contains(cache: String, path: String): Boolean
+
+    /**
      * 通过路径获取请求的对象。
      *
      * 如果对象不存在，则返回 null。

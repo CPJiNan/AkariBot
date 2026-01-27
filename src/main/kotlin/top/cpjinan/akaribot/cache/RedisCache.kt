@@ -17,8 +17,14 @@ class RedisCache : Cache {
         val client = LettuceRedisClient(CacheConfig.lettuceRedisConfig)
 
         init {
-            client.start()
+            client.start().join()
         }
+    }
+
+    override val type = CacheType.REDIS
+
+    override fun contains(cache: String, path: String): Boolean {
+        return client.useCommands { it.exists("${cache}:${path}") == 1L } == true
     }
 
     override fun get(cache: String, path: String): String? {
